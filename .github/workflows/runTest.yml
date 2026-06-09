@@ -11,6 +11,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      APP_ID: ${{ secrets.APP_ID }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

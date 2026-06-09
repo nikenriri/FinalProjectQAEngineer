@@ -9,15 +9,15 @@ Feature: API CRUD Test
       """
       {
         "title": "miss",
-        "firstName": "Rosa",
-        "lastName": "Romalina",
+        "firstName": "Pevita",
+        "lastName": "Carroline",
         "picture": "https://drive.google.com/file/d/1JDnfa31USaqoL2g2xBLsjuZkMwGR2fQX/view?usp=sharing",
         "gender": "female",
-        "email": "rosa12@example.com",
-        "dateOfBirth": "1999-07-14T14:44:52.955Z",
-        "phone": "911-255-5580",
+        "email": "pevita02@example.com",
+        "dateOfBirth": "1979-08-14T14:44:52.955Z",
+        "phone": "923-955-2282",
         "location": {
-             "street": "4246, Washington",
+             "street": "3425, Washington",
              "city": "Bluetown",
              "state": "United State",
              "country": "Washington",
@@ -26,7 +26,7 @@ Feature: API CRUD Test
       }
       """
     Then the API response status code should be 200
-    And the response field "firstName" should be "Rosa"
+    And the response field "firstName" should be "Pevita"
 
     # 2. GET (Read User)
     When I send a GET request to the endpoint to get all of the users list

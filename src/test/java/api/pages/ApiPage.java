@@ -19,14 +19,21 @@ public class ApiPage {
 
     public void setAuthToken() {
         // Menggunakan library io.github.cdimascio:dotenv-java pada Gradle
-        Dotenv dotenv = Dotenv.load();
-        String token = dotenv.get("APP_ID");
+        Dotenv dotenv = Dotenv.configure()
+                .ignoreIfMissing()
+                .load();
 
+        String token = dotenv.get("APP_ID");
         if (token == null || token.isEmpty()) {
-            throw new RuntimeException("ERROR: Variabel APP_ID tidak ditemukan di file .env proyek Gradle Anda!");
+            token = System.getenv("APP_ID");
         }
 
-        // Memasukkan token dari .env ke header request
+        // Validasi akhir jika di kedua tempat tersebut memang benar-benar kosong
+        if (token == null || token.isEmpty()) {
+            throw new RuntimeException("ERROR: Variabel APP_ID tidak ditemukan di file .env maupun Environment Variable Sistem!");
+        }
+
+        // Memasukkan token ke header request
         this.request.header("app-id", token);
     }
 
