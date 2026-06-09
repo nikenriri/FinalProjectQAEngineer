@@ -9,15 +9,15 @@ Feature: API CRUD Test
       """
       {
         "title": "mr",
-        "firstName": "Ahmad",
-        "lastName": "Hamdan",
+        "firstName": "Ghufron",
+        "lastName": "Jokosutono",
         "picture": "https://drive.google.com/file/d/1JDnfa31USaqoL2g2xBLsjuZkMwGR2fQX/view?usp=sharing",
         "gender": "male",
-        "email": "ahmad.11@example.com",
-        "dateOfBirth": "1979-08-14T14:44:52.955Z",
-        "phone": "9311-955-2229",
+        "email": "jokosutono9876123@example.com",
+        "dateOfBirth": "1970-03-14T14:44:52.955Z",
+        "phone": "9313-955-22889",
         "location": {
-             "street": "3420, Washington",
+             "street": "3425, Washington",
              "city": "Bluetown",
              "state": "United State",
              "country": "Washington",
@@ -26,7 +26,7 @@ Feature: API CRUD Test
       }
       """
     Then the API response status code should be 200
-    And the response field "firstName" should be "Ahmad"
+    And the response field "firstName" should be "Ghufron"
 
     # 2. GET (Read User)
     When I send a GET request to the endpoint to get all of the users list
@@ -39,7 +39,7 @@ Feature: API CRUD Test
       {
         "title": "miss",
         "firstName": "Rere",
-        "lastName": "Agustine Updated",
+        "lastName": "Agustina Updated",
         "picture": "https://randomuser.me/api/portraits/med/women/15.jpg",
         "gender": "female",
         "email": "madison.ambrose@example.com",
@@ -55,13 +55,13 @@ Feature: API CRUD Test
       }
       """
     Then the API response status code should be 200
-    And the response field "lastName" should be "Agustine Updated"
+    And the response field "lastName" should be "Agustina Updated"
 
     # 4. GET (all tags)
     When I send a GET request to the endpoint to get all of the tags
     Then the API response status code should be 200
 
     # 5. DELETE (Delete User)
-    When I send a delete request for id "60d0fe4f5311236168a10a14"
+    When I send a delete request for id "60d0fe4f5311236168a10a0c"
     Then the API response status code should be 200
     And the response should return the correct deleted user ID
