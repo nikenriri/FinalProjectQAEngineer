@@ -43,6 +43,13 @@ public class ApiStepDef {
 
     @Then("the API response status code should be {int}")
     public void theAPIResponseStatusCodeShouldBe(int expectedStatus) {
+        if (apiPage.lastResponse.getStatusCode() != expectedStatus) {
+            System.out.println("====== [DEBUG ERROR API SERVER] ======");
+            System.out.println("Status Code Aktual: " + apiPage.lastResponse.getStatusCode());
+            System.out.println("Detail Pesan Error dari Server:");
+            apiPage.lastResponse.prettyPrint(); // Ini akan mencetak JSON Error secara rapi
+            System.out.println("======================================");
+        }
         Assert.assertEquals("Status code API tidak sesuai!", expectedStatus, apiPage.lastResponse.getStatusCode());
     }
 

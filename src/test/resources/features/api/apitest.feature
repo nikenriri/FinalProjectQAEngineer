@@ -9,15 +9,15 @@ Feature: API CRUD Test
       """
       {
         "title": "mr",
-        "firstName": "Dadang",
-        "lastName": "Nikol",
+        "firstName": "Muchlis",
+        "lastName": "Wiliam",
         "picture": "https://drive.google.com/file/d/1JDnfa31USaqoL2g2xBLsjuZkMwGR2fQX/view?usp=sharing",
         "gender": "male",
-        "email": "dadang.nikol.terbaru.2026@example.com",
+        "email": "muchlis.paling.baru.2026@example.com",
       }
       """
     Then the API response status code should be 200
-    And the response field "firstName" should be "Dadang"
+    And the response field "firstName" should be "Muchlis"
 
     # 2. GET (Read User)
     When I send a GET request to the endpoint to get all of the users list
@@ -30,7 +30,7 @@ Feature: API CRUD Test
       {
         "title": "miss",
         "firstName": "Rere",
-        "lastName": "Agustine Updated",
+        "lastName": "Agustinee Updated",
         "picture": "https://randomuser.me/api/portraits/med/women/15.jpg",
         "gender": "female",
         "email": "madison.ambrose@example.com",
@@ -46,7 +46,7 @@ Feature: API CRUD Test
       }
       """
     Then the API response status code should be 200
-    And the response field "lastName" should be "Agustine Updated"
+    And the response field "lastName" should be "Agustinee Updated"
 
     # 4. GET (all tags)
     When I send a GET request to the endpoint to get all of the tags
