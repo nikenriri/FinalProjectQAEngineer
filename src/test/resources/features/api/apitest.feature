@@ -7,17 +7,27 @@ Feature: API CRUD Test
     # 1. POST (Create User)
     When I send a POST request to create a new user with body:
       """
-      {
+       {
         "title": "mr",
-        "firstName": "Muchlis",
-        "lastName": "Wiliam",
-        "picture": "https://drive.google.com/file/d/1JDnfa31USaqoL2g2xBLsjuZkMwGR2fQX/view?usp=sharing",
+        "firstName": "Ramdhan",
+        "lastName": "Lincoln",
+        "picture": "https://randomuser.me/api/portraits/med/men/29.jpg",
         "gender": "male",
-        "email": "muchlis.paling.baru.2026@example.com",
+        "email": "ramdhan.terbaruuu@example.com",
+        "dateOfBirth": "1997-05-14T14:44:52.955Z",
+        "phone": "9125-990-2218",
+        "location": {
+             "street": "1415, Washington",
+             "city": "Bluetown",
+             "state": "United State",
+             "country": "Washington",
+             "timezone": "+6:00"
+        }
       }
+
       """
     Then the API response status code should be 200
-    And the response field "firstName" should be "Muchlis"
+    And the response field "firstName" should be "Ramdhan"
 
     # 2. GET (Read User)
     When I send a GET request to the endpoint to get all of the users list
@@ -30,7 +40,7 @@ Feature: API CRUD Test
       {
         "title": "miss",
         "firstName": "Rere",
-        "lastName": "Agustinee Updated",
+        "lastName": "Agustiny",
         "picture": "https://randomuser.me/api/portraits/med/women/15.jpg",
         "gender": "female",
         "email": "madison.ambrose@example.com",
@@ -46,7 +56,7 @@ Feature: API CRUD Test
       }
       """
     Then the API response status code should be 200
-    And the response field "lastName" should be "Agustinee Updated"
+    And the response field "lastName" should be "Agustiny"
 
     # 4. GET (all tags)
     When I send a GET request to the endpoint to get all of the tags

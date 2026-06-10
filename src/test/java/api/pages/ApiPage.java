@@ -7,14 +7,15 @@ import io.restassured.specification.RequestSpecification;
 
 public class ApiPage {
     private String baseUrl;
-    private RequestSpecification request;
+//    private RequestSpecification request;
+    private String token;
     public Response lastResponse;
 
     public void setBaseUrl(String url) {
         this.baseUrl = url;
         RestAssured.baseURI = this.baseUrl;
         // Inisialisasi request builder bawaan RestAssured Java
-        this.request = RestAssured.given().header("Content-Type", "application/json");
+//        this.request = RestAssured.given().header("Content-Type", "application/json");
     }
 
     public void setAuthToken() {
@@ -23,38 +24,47 @@ public class ApiPage {
                 .ignoreIfMissing()
                 .load();
 
-        String token = dotenv.get("APP_ID");
-        if (token == null || token.isEmpty()) {
-            token = System.getenv("APP_ID");
+        String extractedToken = dotenv.get("APP_ID");
+        if (extractedToken == null || extractedToken.isEmpty()) {
+            extractedToken = System.getenv("APP_ID");
         }
 
         // Validasi akhir jika di kedua tempat tersebut memang benar-benar kosong
-        if (token == null || token.isEmpty()) {
+        if (extractedToken == null || extractedToken.isEmpty()) {
             throw new RuntimeException("ERROR: Variabel APP_ID tidak ditemukan di file .env maupun Environment Variable Sistem!");
         }
 
         // Memasukkan token ke header request
-        this.request.header("app-id", token);
+        this.token = extractedToken.trim();
+    }
+
+    private RequestSpecification getFreshRequest(){
+        return RestAssured.given()
+                .header("Content-Type", "application/json")
+                .header("app-id", this.token);
     }
 
     public void createUser(String jsonBody) {
-        this.lastResponse = this.request.body(jsonBody).post("user/create");
+
+        this.lastResponse = getFreshRequest().body(jsonBody).post("user/create");
     }
 
     public void getAllUsers() {
-        this.lastResponse = this.request.get("user");
+
+        this.lastResponse = getFreshRequest().get("user");
     }
 
     public void updateUser(String userId, String jsonBody) {
-        this.lastResponse = this.request.body(jsonBody).put("user/" + userId);
+        this.lastResponse = getFreshRequest().body(jsonBody).put("user/" + userId);
     }
 
     public void getAlltags(){
-        this.lastResponse = this.request.get("tag");
+        this.lastResponse = getFreshRequest().get("tag");
     }
 
     public void deleteUser(String userId) {
-        this.lastResponse = this.request.delete("user/" + userId);
+
+        this.lastResponse = getFreshRequest().delete("user/" + userId);
     }
 }
 
