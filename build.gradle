@@ -59,6 +59,8 @@ task apiTest(type: Test){
     useJUnitPlatform()
     include '**/ApiTestRunner.class'
 
+    environment "APP_ID", System.getenv('APP_ID')
+
     testLogging {
         events("passed", "skipped", "failed")
     }
