@@ -29,28 +29,12 @@ public class ApiPage {
             extractedToken = System.getenv("APP_ID");
         }
 
-        // ====== [FITUR PELACAKAN UTAMA UNTUK PASIEN PUSING] ======
-        System.out.println("====== [SISTEM DETEKSI TOKEN APP_ID] ======");
-        if (extractedToken == null || extractedToken.isEmpty()) {
-            System.err.println("HASIL: Gagal total! Token bernilai NULL atau KOSONG di server.");
-        } else {
-            String clean = extractedToken.trim();
-            System.out.println("HASIL: Token berhasil ditemukan!");
-            System.out.println("Panjang karakter token: " + clean.length());
-            // Mencetak potongan kecil token untuk verifikasi keaslian tanpa membocorkan rahasia
-            if (clean.length() > 6) {
-                System.out.println("Sinyal Token (Awal...Akhir): "
-                        + clean.substring(0, 3) + "..."
-                        + clean.substring(clean.length() - 3));
-            }
-        }
-        System.out.println("===========================================");
-        // =========================================================
-
+        // Validasi akhir jika di kedua tempat tersebut memang benar-benar kosong
         if (extractedToken == null || extractedToken.isEmpty()) {
             throw new RuntimeException("ERROR: Variabel APP_ID tidak ditemukan di file .env maupun Environment Variable Sistem!");
         }
 
+        // Memasukkan token ke header request
         this.token = extractedToken.trim();
     }
 

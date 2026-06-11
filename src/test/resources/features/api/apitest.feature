@@ -9,13 +9,13 @@ Feature: API CRUD Test
       """
        {
         "title": "mr",
-        "firstName": "Rohmat",
-        "lastName": "Smart",
+        "firstName": "Fabio",
+        "lastName": "Ramadhan",
         "picture": "https://randomuser.me/api/portraits/med/men/29.jpg",
         "gender": "male",
-        "email": "rohmat.terbaru2026@example.com",
+        "email": "fabio.terbaru2026@example.com",
         "dateOfBirth": "1996-10-14T14:44:52.955Z",
-        "phone": "9105-990-2318",
+        "phone": "9195-970-2318",
         "location": {
              "street": "1415, Washington",
              "city": "Bluetown",
@@ -27,7 +27,7 @@ Feature: API CRUD Test
 
       """
     Then the API response status code should be 200
-    And the response field "firstName" should be "Rohmat"
+    And the response field "firstName" should be "Fabio"
 
     # 2. GET (Read User)
     When I send a GET request to the endpoint to get all of the users list
@@ -40,7 +40,7 @@ Feature: API CRUD Test
       {
         "title": "miss",
         "firstName": "Rere",
-        "lastName": "Agustinya",
+        "lastName": "Agustinyaa",
         "picture": "https://randomuser.me/api/portraits/med/women/15.jpg",
         "gender": "female",
         "email": "madison.ambrose@example.com",
@@ -56,13 +56,13 @@ Feature: API CRUD Test
       }
       """
     Then the API response status code should be 200
-    And the response field "lastName" should be "Agustinya"
+    And the response field "lastName" should be "Agustinyaa"
 
     # 4. GET (all tags)
     When I send a GET request to the endpoint to get all of the tags
     Then the API response status code should be 200
 
     # 5. DELETE (Delete User)
-    When I send a delete request for id "60d0fe4f5311236168a10a09"
+    When I send a delete request for id "60d0fe4f5311236168a10a19"
     Then the API response status code should be 200
     And the response should return the correct deleted user ID
